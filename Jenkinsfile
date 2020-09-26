@@ -1,31 +1,45 @@
 pipeline {
-  agent any
-  stages {
-    stage('Check Out') {
-      steps {
-        checkout scm
-      }
-    }
-
-    stage('Build') {
-         steps {
-      script {
-          sh """
-          pip install -r requirements.txt
-          """
-        }
-        }
-    }
-
-    stage('Run') {
-      steps {
-        script {
-          sh """
-          python first_script.py
-        """
-      }
-      }
-    }
-
-  }
+         agent any
+         stages {
+                 stage('One') {
+                 steps {
+                     echo 'Hi, this is Sajjad'
+                 }
+                 }
+                 stage('Two') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+                 stage('Three') {
+                 when {
+                       not {
+                            branch "master"
+                       }
+                 }
+                 steps {
+                       echo "Hello"
+                 }
+                 }
+                 stage('Four') {
+                 parallel {
+                            stage('Unit Test') {
+                           steps {
+                                echo "Running the unit test..."
+                           }
+                           }
+                            stage('Integration test') {
+                              agent {
+                                    docker {
+                                            reuseNode true
+                                            image 'ubuntu'
+                                           }
+                                    }
+                              steps {
+                                echo "Running the integration test..."
+                              }
+                           }
+                           }
+                           }
+              }
 }
