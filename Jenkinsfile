@@ -8,10 +8,12 @@ pipeline {
     }
 
     stage('Build') {
+         steps {
       script {
           sh """
           pip install -r requirements.txt
           """
+        }
         }
     }
 
