@@ -9,7 +9,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        build 'first_script.py'
+        sh "python first_script.py"
       }
     }
 
