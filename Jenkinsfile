@@ -3,19 +3,25 @@ pipeline {
   stages {
     stage('Check Out') {
       steps {
-        git(url: 'https://github.com/GlobalWorldPK/first_pipeline.git', branch: 'master')
+        checkout scm
       }
     }
 
     stage('Build') {
-      steps {
-        sh "python first_script.py"
-      }
+      script {
+          sh """
+          pip install -r requirements.txt
+          """
+        }
     }
 
     stage('Run') {
       steps {
-        echo 'Hello.'
+        script {
+          sh """
+          python first_script.py
+        """
+      }
       }
     }
 
