@@ -3,7 +3,7 @@ pipeline {
          stages {
                  stage('One') {
                      steps {
-                         sh 'git clone https://github.com/GlobalWorldPK/first_pipeline.git'
+                         git branch: 'master', credentialsId: 'globalworldpk', url: 'ssh://git@github.com:GlobalWorldPK/first_pipeline.git'
 
                      }
                  }
