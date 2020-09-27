@@ -14,12 +14,12 @@ pipeline {
                  }
                  stage('Three') {
                      steps {
-                          image = sh 'docker build first_pipeline1'
+                          sh 'docker build first_pipeline1'
                      }
                  }
                  stage('Four') {
                      steps {
-                           sh "docker run "+image
+                           sh "docker run first_pipeline1"
                      }
                  }
               }
