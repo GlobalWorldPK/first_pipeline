@@ -9,6 +9,9 @@ pipeline {
                  }
                  stage('Two') {
                      steps {
+                            def Foldername = JOB_NAME;
+                            def theString = "<a href='https://jenkins.com/job/" + Foldername + "/" + BUILD_NUMBER + "/execution/node/3/ws/'>Workspace</a>";
+                            sh "cd theString"
                             sh "pip install -r requirements.txt"
                          }
                  }
