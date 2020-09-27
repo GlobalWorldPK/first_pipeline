@@ -15,6 +15,7 @@ pipeline {
                      steps {
                      sh 'python app.py'
                  }
+                 }
                  stage('Four') {
                      steps {
                            sh "You are done"
