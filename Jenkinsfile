@@ -3,43 +3,24 @@ pipeline {
          stages {
                  stage('One') {
                      steps {
-                         echo 'Hi, this is Sajjad'
+                         sh 'git 'https://github.com/GlobalWorldPK/first_pipeline.git''
+
                      }
                  }
                  stage('Two') {
                      steps {
-                        input('Do you want to proceed?')
+                        sh 'cd first_pipeline1'
                      }
                  }
                  stage('Three') {
-                     when {
-                           not {
-                                branch "master"
-                           }
-                     }
                      steps {
-                           echo "Hello"
+                          image = sh 'docker build first_pipeline1'
                      }
                  }
                  stage('Four') {
-                     parallel {
-                                stage('Unit Test') {
-                               steps {
-                                    echo "Running the unit test..."
-                               }
-                               }
-                                stage('Integration test') {
-                                  agent {
-                                        docker {
-                                                reuseNode true
-                                                image 'ubuntu'
-                                               }
-                                        }
-                                  steps {
-                                    echo "Running the integration test..."
-                                  }
-                               }
-                               }
-                   }
+                     steps {
+                           sh "docker run "+image
+                     }
+                 }
               }
 }
