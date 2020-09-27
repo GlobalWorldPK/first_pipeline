@@ -3,7 +3,7 @@ pipeline {
          stages {
                  stage('One') {
                      steps {
-                         sh 'git 'https://github.com/GlobalWorldPK/first_pipeline.git''
+                         sh 'git clone https://github.com/GlobalWorldPK/first_pipeline.git'
 
                      }
                  }
