@@ -9,17 +9,17 @@ pipeline {
                  }
                  stage('Two') {
                      steps {
-                            echo "wow"
+                            sh "pip install -r requirements.txt"
                          }
                  }
                  stage('Three') {
                      steps {
-                          sh 'docker build first_pipeline1'
+                          sh 'python app.py'
                      }
                  }
                  stage('Four') {
                      steps {
-                           sh "docker run first_pipeline1"
+                           sh "You are done"
                      }
                  }
               }
