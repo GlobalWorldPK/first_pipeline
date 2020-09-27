@@ -8,7 +8,9 @@ pipeline {
                  }
                  stage('Two') {
                      steps {
+
                             sh """
+                              cd first_pipeline
                               pip install -r requirements.txt
                               """
                          }
