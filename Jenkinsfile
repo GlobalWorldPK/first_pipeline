@@ -3,7 +3,6 @@ pipeline {
          stages {
                  stage('One') {
                      steps {
-                         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'globalworldpk', url: 'https://github.com/GlobalWorldPK/first_pipeline.git']]])
                          checkout scm
                      }
                  }
